@@ -3,10 +3,11 @@
 #SBATCH --output=baseline_%j.out
 #SBATCH --error=baseline_%j.err
 #SBATCH --ntasks=1
-#SBATCH --cpus-per-task=8
+#SBATCH --cpus-per-task=32
 #SBATCH --gres=gpu:a100:1
 #SBATCH --time=00:30:00
+#SBATCH --mem=32G
 
 source "$STORE/mypython/bin/activate"
 
-python BASELINE/train_baseline.py
+python $STORE/Lab1/BASELINE/train_baseline.py
