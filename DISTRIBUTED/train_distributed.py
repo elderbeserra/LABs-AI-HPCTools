@@ -92,8 +92,9 @@ def main():
                 end_positions.append(0)
                 continue
 
-            start_char = answer["answer_start"]
-            end_char = start_char + len(answer["text"])
+            # note- have to extract the first element from answer lists
+            start_char = answer["answer_start"][0]
+            end_char = start_char + len(answer["text"][0])
 
             sequence_ids = inputs.sequence_ids(i)
             idx = 0
@@ -105,12 +106,13 @@ def main():
                 idx += 1
             context_end = idx - 1
 
-            if offset[context_start] > start_char or offset[context_end][1] < end_char:
+            # note- we need to specify the start and end positions of the answer in the context
+            if offset[context_start][0] > start_char or offset[context_end][1] < end_char:
                 start_positions.append(0)
                 end_positions.append(0)
             else:
                 idx = context_start
-                while idx <= context_end and offset[idx] <= start_char:
+                while idx <= context_end and offset[idx][0] <= start_char:
                     idx += 1
                 start_positions.append(idx - 1)
 
