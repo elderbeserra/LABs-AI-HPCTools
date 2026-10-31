@@ -62,7 +62,7 @@ All workloads were executed on the FT3 using a dedicated Python environment conf
 ### Distributed Pipeline
 - Data Partitioning: `torch.utils.data.distributed.DistributedSampler` sustains a balanced sample distribution across all active GPUs preventing overlaps.
 - Rank0 Logging: File writes and console outputs were isolated strictly to Rank 0 to prevent filesystem collisions.
-- Hyperparameter Scaling: Learning rate scaling linearly with world size ($3\times 10^{-5} \times \text{world\_size} = 1.2\times 10^{-4}$ for 4 GPUs) to account for expanded global batch size
+- Hyperparameter Scaling: Learning rate scaling linearly with world size (`3 * 10^5 * world_size = 1.2 * 10^4` for 4 GPUs) to account for expanded global batch size
 
 ---
 
